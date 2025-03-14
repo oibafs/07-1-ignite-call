@@ -43,7 +43,9 @@
       },
       "style": {
         "noShoutyConstants": "off",
-        "useNamingConvention": "off"
+        "useNamingConvention": "off",
+        "useImportType": "off",
+        "noNonNullAssertion": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off"
