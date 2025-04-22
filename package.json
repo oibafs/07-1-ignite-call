@@ -14,6 +14,7 @@
 		"@hookform/resolvers": "4.1.0",
 		"@ignite-ui/react": "2.2.4",
 		"@prisma/client": "6.5.0",
+		"@tanstack/react-query": "5.74.4",
 		"axios": "1.8.1",
 		"dayjs": "1.11.13",
 		"next": "15.1.6",
