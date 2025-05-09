@@ -8,7 +8,7 @@ import {
   TextArea,
 } from '@ignite-ui/react'
 import { GetServerSideProps } from 'next'
-import { getServerSession } from 'next-auth'
+import { unstable_getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
@@ -90,26 +90,15 @@ export default function UpdateProfile() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  try {
-    const session = await getServerSession(
-      req,
-      res,
-      buildNextAuthOptions(req, res),
-    )
+  const session = await unstable_getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req, res),
+  )
 
-    return {
-      props: {
-        session,
-      },
-    }
-  } catch (error) {
-    console.error('getServerSideProps error:', error)
-
-    return {
-      redirect: {
-        destination: '/error', // or a fallback page
-        permanent: false,
-      },
-    }
+  return {
+    props: {
+      session,
+    },
   }
 }
