@@ -90,15 +90,26 @@ export default function UpdateProfile() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await unstable_getServerSession(
-    req,
-    res,
-    buildNextAuthOptions(req, res),
-  )
+  try {
+    const session = await unstable_getServerSession(
+      req,
+      res,
+      buildNextAuthOptions(req, res),
+    )
 
-  return {
-    props: {
-      session,
-    },
+    return {
+      props: {
+        session,
+      },
+    }
+  } catch (error) {
+    console.error('getServerSideProps error:', error)
+
+    return {
+      redirect: {
+        destination: '/error', // or a fallback page
+        permanent: false,
+      },
+    }
   }
 }
